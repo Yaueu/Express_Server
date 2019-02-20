@@ -14,7 +14,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 // Перенаправление файла для POST запроса
 
 app.get('/index', function (req, res) {
-    res.sendFile('D:\\Project\\Express_Server\\view\\index _V2.html');
+   // res.sendFile('D:\\Project\\Express_Server\\view\\index _V2.html');
+    res.sendFile(__dirname+'/view/index _V2.html'); // относительный путь !!!
 });
 // Обработка запроса
 app.post('/index', urlencodedParser, function (req, res) {
@@ -42,7 +43,9 @@ app.get('/settings', function (req, res, next) {
         res.send("Страница настроек /settings");
 });
 
+
 // Сюда не доходит,переадресовывается по /settings
+// Вроде доходит http://127.0.0.1:8080/settings/Vasya !!!
 app.get('/settings/:messageId', function(req, res, next){
     // Вывод сообщения на страницу
     res.send('<h1>Страница настроек /settings</h1>' + 'Привет ' + req.params['messageId']);
